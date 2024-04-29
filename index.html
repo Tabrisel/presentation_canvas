@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>reveal.js</title>
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/blood.css">
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Canvas</h1>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    <script type="text/template">
+                        <h3>What is canvas?</h3>
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                        <h3>How to create?</h3>
+												
+                        ```
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <link rel="stylesheet" href="styles.css">
+                            <title>Document</title>
+                        </head>
+                        <body>
+                            <canvas id="canvas1"></canvas>
+                            <script src="script.js"></script>
+                        </body>
+                        </html>
+                        ```
+                    </script>
+                </section>
+                <section data-markdown>
+                    <script type="text/template">
+                    ```
+                    #canvas1 {
+                        position: absolute;
+                        background: aquamarine;
+                        width: 200px;
+                        height: 200px;
+                        top: 0;
+                        left: 0;
+                    }
+                    ```
+                    <img src="images/square.png">
+                    </script>
+                </section>
+           		 <section data-markdown>
+                <script type="text/template">
+                ```
+                const canvas = document.getElementById("canvas1");
+                const ctx = canvas.getContext("2d");
+                ctx.fillStyle = "beige";
+                ctx.fillRect(0, 0, 150, 75);
+                ```
+                <img src="images/rectangle.png">
+                </script>
+            	</section>
+            	<section data-markdown>
+                <script type="text/template">
+                ```
+                ctx.fillRect(0, 0, 150, 75);
+                ```
+                <img width="860px" height="500px" src="images/coordinates.png">
+                </script>
+            	</section>
+            	<section data-markdown>
+                <script type="text/template">
+                ```
+                <canvas id="canvas1" width="200" height="100"></canvas>
+
+                #canvas1 {
+                    border: 1px solid black;
+                }
+
+                const canvas = document.getElementById("canvas1");
+                const ctx = canvas.getContext("2d");
+                ctx.moveTo(0, 0);
+                ctx.lineTo(200, 100);
+                ctx.strokeStyle = 'blue';
+                ctx.stroke();
+                ```
+                <img src="images/line.png">
+                </script>
+            	</section>
+            	<section data-markdown>
+                <script type="text/template">
+                ```
+                const canvas = document.getElementById("canvas1");
+                const ctx = canvas.getContext("2d");
+                ctx.beginPath();
+                ctx.arc(95, 50, 40, 0, 2*Math.PI);
+                ctx.stroke();
+                ctx.fillStyle = "yellow";
+                ctx.fill();
+                ```
+                <img src="images/circle.png">
+                </script>
+            	</section>
+        </section>
+				<section>
+            <section data-markdown>
+              <script type="text/template">
+								<h3>Gradients</h3>
+
+								```
+								const c=document.getElementById("canvas1");
+								const ctx=c.getContext("2d");
+
+								const grd=ctx.createLinearGradient(0, 0, 200, 0);
+								grd.addColorStop(0, "green");
+								grd.addColorStop(1, "yellow");
+
+								ctx.fillStyle=grd;
+								ctx.fillRect(10, 10, 150, 80);
+								```
+								<img src="images/gradient1.png">
+              </script>
+            </section>
+            <section data-markdown>
+              <script type="text/template">
+							```
+							const c=document.getElementById("canvas1");
+							const ctx=c.getContext("2d");
+
+							const grd=ctx.createRadialGradient(75, 50, 5, 90, 60, 100);
+							grd.addColorStop(0, "green");
+							grd.addColorStop(1, "yellow");
+
+							ctx.fillStyle = grd;
+							ctx.fillRect(10, 10, 150, 80);
+							```
+
+							<img src="images/gradient2.png">
+              </script>
+            </section>			
+				</section>
+        <section>
+					<section data-markdown>
+							<script type="text/template">
+								<h3>Text output</h3>
+								<p>fillText()</p>
+
+								```
+								const canvas = document.getElementById("canvas1");
+								canvas.width = 200;
+								canvas.height = 100;
+								const ctx = canvas.getContext("2d");
+								ctx.font = "20px Arial";
+								ctx.fillText("Canvas is good!", 20, 50);
+								```
+
+								<img src="images/text1.png" width="300px" height="auto">
+							</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							<h3>Text output</h3>
+							<p>strokeText()</p>
+
+							```
+							const canvas = document.getElementById("canvas1");
+							canvas.width = 300;
+							canvas.height = 100;
+							const ctx = canvas.getContext("2d");
+							ctx.font = "30px Arial";
+							ctx.strokeText("Canvas is cool :)", 20, 50);
+							```
+
+							<img src="images/text2.png" width="400px" height="auto">
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							<h3>Text output</h3>
+							<p>Centering text</p>
+
+							```
+							const canvas = document.getElementById("canvas1");
+							canvas.width = 300;
+							canvas.height = 100;
+							const ctx = canvas.getContext("2d");
+							ctx.font = "20px Comic Sans MS";
+							ctx.fillStyle = "darkViolet";
+							ctx.textAlign = "center";
+							ctx.fillText("Wow! I'm right in the center.", canvas.width/2, canvas.height/2);
+							```
+
+							<img src="images/text3.png" width="400px" height="auto">
+						</script>
+					</section>				
+			</section>
+			<section data-markdown>
+				<script type="text/template">
+					<h3>Image output</h3>
+
+					```
+					<canvas id="canvas1" width="300px" height="300px"></canvas>
+					const canvas = document.getElementById('canvas1');
+					const ctx = canvas.getContext('2d');
+
+					const img = new Image();
+					img.onload = function() {
+						img.width = 300;
+						img.height = 300;
+						ctx.drawImage(img, 0, 0, img.width, img.height);
+					};
+					img.src = "pathToPng.png";
+					```
+
+					<img src="images/awesome.png" width="300px" heigth="300px">
+				</script>
+			</section>
+			<section data-markdown>
+				<script type="text/template">
+					<h3>An example of possibilities</h3>
+
+					```
+					...
+					<body onload="draw();">
+						<canvas id="canvas" width="150" height="150"></canvas>
+					</body>
+					...
+					canvas { border: 1px solid black; }
+					...
+					function draw() {
+						const canvas = document.getElementById('canvas');
+						if (canvas.getContext) {
+							const ctx = canvas.getContext('2d');
+							ctx.fillStyle = 'rgb(200, 0, 0)';
+							ctx.fillRect(10, 10, 50, 50);
+							ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+							ctx.fillRect(30, 30, 50, 50);
+						}
+					}
+					```
+					<img src = "images/finalExample.png" width="170px" height="170px">
+			</script>
+			</section>
+			<section>
+				<h3>Thank you for watching!</h3>
+			</section>		
+        </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+        });
+    </script>
+</body>
+</html>
